@@ -10,7 +10,7 @@ const app = express()
 const port = process.env.PORT || 8000
 const DATABASE_URL = process.env.DATABASE_URL
 
-// ✅ FIXED CORS CONFIG (IMPORTANT)
+// ✅ CORS (Production Ready)
 app.use(cors({
   origin: [
     "http://localhost:3000",
@@ -21,14 +21,14 @@ app.use(cors({
   credentials: true
 }))
 
-// ✅ VERY IMPORTANT: allow preflight requests
+// ✅ Handle preflight
 app.options("*", cors())
 
-// JSON Middleware (must be before routes)
+// Middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Database Connection
+// DB
 connectDB(DATABASE_URL)
 
 // Routes
